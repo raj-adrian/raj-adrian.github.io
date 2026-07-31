@@ -58,6 +58,9 @@ const highScore =
 
 highScoreEl.textContent = highScore;
 
+const comboEl =
+document.getElementById("combo");
+
 function createMatrix(w, h) {
     const matrix = [];
 
@@ -353,6 +356,20 @@ function arenaSweep() {
         updateScore();
     }
 
+    if(lines > 0){
+        combo++;
+
+        comboEl.textContent =
+            combo + "x";
+
+        player.score +=
+            lines * 100 * level +
+            combo * 50;
+
+    }else{
+        combo = 0;
+        comboEl.textContent = "0";
+    }
 }
 
 function rotate(matrix) {
@@ -737,6 +754,9 @@ let canHold = true;
     }
 
 }
+
+let combo = 0;
+
 
 draw();
 drawNextPiece();
