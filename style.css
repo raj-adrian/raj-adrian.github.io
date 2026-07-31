@@ -2086,3 +2086,40 @@ button {
     color: #00d4ff;
     transform: translateX(5px);
 }
+
+.game-card{
+    width:420px;
+    margin:auto;
+    padding:30px;
+    background:#1d2946;
+    border:2px solid #00d4ff;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,212,255,.25);
+}
+
+#tetris{
+    background:#111;
+    border:2px solid #00d4ff;
+    border-radius:10px;
+    margin:20px 0;
+}
+
+.game-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.game-info button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.controls{
+    margin-top:15px;
+    color:#bbb;
+    font-size:.9rem;
+}
