@@ -71,6 +71,86 @@ function createMatrix(w, h) {
     return matrix;
 }
 
+const tetrisEffect =
+document.getElementById(
+    "tetrisEffect"
+);
+
+const particles = [];
+
+const clearSound =
+document.getElementById(
+    "clearSound"
+);
+
+const dropSound =
+document.getElementById(
+    "dropSound"
+);
+
+function spawnParticles(y){
+
+    for(let i=0;i<20;i++){
+
+        particles.push({
+
+            x:Math.random()*COLS,
+            y:y,
+            dx:(Math.random()-.5)*0.2,
+            dy:(Math.random()-.5)*0.2,
+            life:30
+
+        });
+
+    }
+}
+
+function drawParticles(){
+
+    particles.forEach((p,index)=>{
+
+        ctx.fillStyle =
+            "rgba(0,212,255," +
+            (p.life/30) + ")";
+
+        ctx.fillRect(
+            p.x,
+            p.y,
+            .2,
+            .2
+        );
+
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+
+        if(p.life<=0){
+
+            particles.splice(index,1);
+
+        }
+
+    });
+}
+
+function showTetris(){
+
+    tetrisEffect.textContent =
+        "TETRIS!";
+
+    tetrisEffect.classList.add(
+        "tetris-show"
+    );
+
+    setTimeout(() => {
+
+        tetrisEffect.classList.remove(
+            "tetris-show"
+        );
+
+    },1000);
+}
+
 function createPiece(type) {
 
     if (type === "T") {
@@ -757,10 +837,14 @@ let canHold = true;
 
 let combo = 0;
 
+clearSound.play();
+dropSound.play();
 
 draw();
 drawNextPiece();
 drawArena();
 drawGhost();
+drawParticles();
 drawMatrix(player.matrix, player.pos);
 
+spawnParticles(y);
