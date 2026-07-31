@@ -2116,3 +2116,22 @@ button {
     border:none;
     overflow:hidden;
 }
+
+.play-game-btn{
+    display:inline-block;
+    padding:18px 40px;
+    margin:40px auto;
+    background:linear-gradient(135deg,#00d4ff,#0099ff);
+    color:#fff;
+    font-size:20px;
+    font-weight:700;
+    text-decoration:none;
+    border-radius:50px;
+    box-shadow:0 0 20px rgba(0,212,255,.5);
+    transition:.3s ease;
+}
+
+.play-game-btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 35px rgba(0,212,255,.8);
+}
