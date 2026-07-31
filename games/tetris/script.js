@@ -592,5 +592,49 @@ document.addEventListener(
     }
 );
 
+function drawGhost() {
+
+    const ghost = {
+        pos: {
+            x: player.pos.x,
+            y: player.pos.y
+        },
+        matrix: player.matrix
+    };
+
+    while (!collide(arena, ghost)) {
+        ghost.pos.y++;
+    }
+
+    ghost.pos.y--;
+
+    ghost.matrix.forEach((row, y) => {
+
+        row.forEach((value, x) => {
+
+            if (value !== 0) {
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,.15)";
+
+                ctx.fillRect(
+                    x + ghost.pos.x,
+                    y + ghost.pos.y,
+                    1,
+                    1
+                );
+
+            }
+
+        });
+
+    });
+
+}
+
 draw();
 drawNextPiece();
+drawArena();
+drawGhost();
+drawMatrix(player.matrix, player.pos);
+
