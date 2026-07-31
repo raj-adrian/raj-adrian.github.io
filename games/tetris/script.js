@@ -37,6 +37,9 @@ const player = {
     score: 0
 };
 
+const levelEl =
+document.getElementById("level");
+
 let nextPiece = null;
 let animationId = null;
 let paused = false;
@@ -314,22 +317,20 @@ function arenaSweep() {
 
     if (lines > 0) {
 
-        player.score += lines * 100;
+        totalLines += lines;
 
-        if (
-            player.score >
-            Number(highScoreEl.textContent)
-        ) {
+        player.score += lines * 100 * level;
 
-            localStorage.setItem(
-                "tetris-highscore",
-                player.score
+        level =
+            Math.floor(totalLines / 10) + 1;
+
+        levelEl.textContent = level;
+
+        dropInterval =
+            Math.max(
+                100,
+                700 - ((level - 1) * 50)
             );
-
-            highScoreEl.textContent =
-                player.score;
-
-        }
 
         updateScore();
     }
