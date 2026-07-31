@@ -139,3 +139,39 @@ justify-content:center;
 width:100%;
 }
 }
+
+#tetrisEffect{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:5rem;
+font-weight:bold;
+color:#00d4ff;
+pointer-events:none;
+opacity:0;
+z-index:9999;
+}
+
+.tetris-show{
+animation:tetrisFlash 1s;
+}
+
+@keyframes tetrisFlash{
+
+0%{
+opacity:0;
+transform:translate(-50%,-50%) scale(.5);
+}
+
+40%{
+opacity:1;
+transform:translate(-50%,-50%) scale(1.2);
+}
+
+100%{
+opacity:0;
+transform:translate(-50%,-50%) scale(1);
+}
+
+}
