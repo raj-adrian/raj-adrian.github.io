@@ -49,6 +49,10 @@ let dropCounter = 0;
 let dropInterval = 700;
 let lastTime = 0;
 
+const holdCanvas = document.getElementById("hold");
+const holdCtx = holdCanvas.getContext("2d");
+holdCtx.scale(30, 30);
+
 const highScore =
     localStorage.getItem("tetris-highscore") || 0;
 
@@ -137,11 +141,25 @@ function randomPiece() {
 }
 
 function drawCell(x, y, color) {
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 10;
     ctx.fillStyle = color;
-    ctx.fillRect(x, y, 1, 1);
+    ctx.fillRect(
+        x,
+        y,
+        1,
+        1
+    );
 
-    ctx.strokeStyle = "rgba(255,255,255,.15)";
-    ctx.strokeRect(x, y, 1, 1);
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle =
+        "rgba(255,255,255,.15)";
+    ctx.strokeRect(
+        x,
+        y,
+        1,
+        1
+    );
 }
 
 function drawMatrix(matrix, offset) {
@@ -529,6 +547,67 @@ function gameOver() {
     gameStarted = false;
 }
 
+function drawHoldPiece() {
+
+    holdCtx.clearRect(
+        0,
+        0,
+        holdCanvas.width,
+        holdCanvas.height
+    );
+
+    if (!holdPiece) return;
+
+    holdPiece.forEach((row, y) => {
+        row.forEach((value, x) => {
+
+            if (value !== 0) {
+
+                holdCtx.fillStyle =
+                    COLORS[value];
+
+                holdCtx.fillRect(
+                    x + 0.5,
+                    y + 0.5,
+                    1,
+                    1
+                );
+            }
+        });
+    });
+}
+
+function holdCurrentPiece() {
+
+    if (!canHold) return;
+
+    if (!holdPiece) {
+
+        holdPiece = player.matrix;
+        playerReset();
+
+    } else {
+
+        const temp = holdPiece;
+        holdPiece = player.matrix;
+        player.matrix = temp;
+
+        player.pos.y = 0;
+        player.pos.x = 3;
+    }
+
+    drawHoldPiece();
+
+    canHold = false;
+}
+
+canHold = true;
+
+case "c":
+case "C":
+    holdCurrentPiece();
+    break;
+
 startBtn.addEventListener(
     "click",
     startGame
@@ -635,6 +714,29 @@ function drawGhost() {
 
 let level = 1;
 let totalLines = 0;
+let holdPiece = null;
+let canHold = true;
+
+.header h1{
+    color:#00d4ff;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+
+    from{
+        text-shadow:
+        0 0 5px #00d4ff,
+        0 0 10px #00d4ff;
+    }
+
+    to{
+        text-shadow:
+        0 0 15px #00d4ff,
+        0 0 30px #00d4ff;
+    }
+
+}
 
 draw();
 drawNextPiece();
