@@ -62,13 +62,15 @@ font-size:.8rem;
     display:flex;
     justify-content:center;
     align-items:flex-start;
-    gap:20px;
+    gap:15px;
 }
 
 #board{
-background:#020617;
-border:2px solid #00d4ff;
-border-radius:12px;
+    background:#020617;
+    border:2px solid #00d4ff;
+    border-radius:12px;
+    width:280px;
+    height:560px;
 }
 
 canvas{
@@ -80,7 +82,7 @@ canvas{
 display:flex;
 flex-direction:column;
 gap:8px;
-width:180px;
+width:160px;
 overflow:hidden;
 }
 
