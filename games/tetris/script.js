@@ -632,6 +632,9 @@ function drawGhost() {
 
 }
 
+let level = 1;
+let totalLines = 0;
+
 draw();
 drawNextPiece();
 drawArena();
