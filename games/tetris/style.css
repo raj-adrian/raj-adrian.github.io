@@ -18,7 +18,9 @@ body{
     display:flex;
     justify-content:center;
     align-items:flex-start;
-    padding:10px;
+    padding:5px;
+    min-height:100vh;
+    overflow:hidden;
 }
 
 .tetris-wrapper{
@@ -77,14 +79,15 @@ canvas{
 .sidebar{
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:8px;
 width:180px;
+overflow:hidden;
 }
 
 .panel{
 background:#111827;
 border:1px solid rgba(255,255,255,.08);
-padding:15px;
+padding:10px;
 border-radius:12px;
 color:white;
 }
@@ -187,4 +190,10 @@ opacity:0;
 transform:translate(-50%,-50%) scale(1);
 }
 
+}
+
+#next,
+#hold{
+    width:100px;
+    height:100px;
 }
