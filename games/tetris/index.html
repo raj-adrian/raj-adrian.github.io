@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tetris Clone</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tetris Portfolio Edition</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="game-container">
-    <canvas id="tetris" width="240" height="400"></canvas>
+<div class="tetris-wrapper">
 
-    <div class="sidebar">
-        <h1>TETRIS</h1>
-        <div class="score-box">
-            Score: <span id="score">0</span>
+    <div class="game-card">
+
+        <div class="header">
+            <h1>TETRIS</h1>
+            <span class="badge">Portfolio Edition</span>
         </div>
 
-        <div class="controls">
-            <p>⬅ ➡ Move</p>
-            <p>⬇ Drop</p>
-            <p>⬆ Rotate</p>
+        <div class="game-layout">
+
+            <canvas id="board" width="300" height="600"></canvas>
+
+            <div class="sidebar">
+
+                <div class="panel">
+                    <h3>Score</h3>
+                    <div id="score">0</div>
+                </div>
+
+                <div class="panel">
+                    <h3>High Score</h3>
+                    <div id="highScore">0</div>
+                </div>
+
+                <div class="panel">
+                    <h3>Next</h3>
+                    <canvas id="next" width="120" height="120"></canvas>
+                </div>
+
+                <button id="startBtn">Start Game</button>
+                <button id="pauseBtn">Pause</button>
+
+            </div>
+
         </div>
+
+        <div id="overlay" class="overlay">
+            <div class="overlay-box">
+                <h2>TETRIS</h2>
+                <p>Press Start to Play</p>
+            </div>
+        </div>
+
     </div>
+
 </div>
 
 <script src="script.js"></script>
