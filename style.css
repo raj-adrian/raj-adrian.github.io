@@ -2135,3 +2135,30 @@ button {
     transform:translateY(-5px) scale(1.05);
     box-shadow:0 0 35px rgba(0,212,255,.8);
 }
+
+/* Floating Music Button */
+.music-btn {
+    position: fixed;
+    bottom: 90px; /* Above the Back-to-Top button */
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: #1f2937;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    background: #374151;
+    transform: scale(1.1);
+}
+
+.music-btn.playing {
+    background: #10b981;
+}
