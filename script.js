@@ -384,3 +384,21 @@ if (document.readyState === 'loading') {
 
 // ===== LOG INITIALIZATION =====
 console.log('Portfolio loaded successfully!');
+
+// ===== BACKGROUND MUSIC =====
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+if (music && musicBtn) {
+    musicBtn.addEventListener("click", () => {
+        if (music.paused) {
+            music.play();
+            musicBtn.classList.add("playing");
+            musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        } else {
+            music.pause();
+            musicBtn.classList.remove("playing");
+            musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+        }
+    });
+}
