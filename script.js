@@ -391,34 +391,45 @@ const musicBtn = document.getElementById("musicBtn");
 
 if (music && musicBtn) {
 
-    // Autoplay muted
-    music.play();
+    // Restore music state
+    let isPlaying = localStorage.getItem("musicPlaying");
+    let musicTime = localStorage.getItem("musicTime");
 
+    if (musicTime) {
+        music.currentTime = parseFloat(musicTime);
+    }
+
+    if (isPlaying === "true") {
+        music.play();
+        musicBtn.classList.add("playing");
+        musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+    }
+
+    // Music button
     musicBtn.addEventListener("click", () => {
 
-        if (music.muted) {
-            // First click: turn on music
-            music.muted = false;
+        if (music.paused) {
             music.play();
 
-            musicBtn.classList.add("playing");
-            musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
-
-        } else if (music.paused) {
-            // Play
-            music.play();
+            localStorage.setItem("musicPlaying", "true");
 
             musicBtn.classList.add("playing");
             musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
 
         } else {
-            // Pause
             music.pause();
+
+            localStorage.setItem("musicPlaying", "false");
 
             musicBtn.classList.remove("playing");
             musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
         }
 
+    });
+
+    // Save current time before leaving page
+    window.addEventListener("beforeunload", () => {
+        localStorage.setItem("musicTime", music.currentTime);
     });
 
 }
