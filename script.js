@@ -391,20 +391,28 @@ const musicBtn = document.getElementById("musicBtn");
 
 if (music && musicBtn) {
 
-    // Try autoplay with sound
-    music.play().catch(error => {
-        console.log("Autoplay blocked by browser:", error);
-    });
+    // Autoplay muted
+    music.play();
 
     musicBtn.addEventListener("click", () => {
 
-        if (music.paused) {
+        if (music.muted) {
+            // First click: turn on music
+            music.muted = false;
+            music.play();
+
+            musicBtn.classList.add("playing");
+            musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+
+        } else if (music.paused) {
+            // Play
             music.play();
 
             musicBtn.classList.add("playing");
             musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
 
         } else {
+            // Pause
             music.pause();
 
             musicBtn.classList.remove("playing");
