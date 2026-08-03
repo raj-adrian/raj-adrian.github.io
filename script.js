@@ -389,20 +389,17 @@ console.log('Portfolio loaded successfully!');
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-
 if (music && musicBtn) {
 
-    // Start muted autoplay
-    music.play().catch(() => {
-        console.log("Autoplay blocked");
+    // Try autoplay
+    music.play().catch(error => {
+        console.log("Autoplay blocked:", error);
     });
 
     musicBtn.addEventListener("click", () => {
 
         if (music.muted) {
-            // Turn on sound
+            // Enable sound
             music.muted = false;
             music.play();
 
@@ -410,14 +407,14 @@ if (music && musicBtn) {
             musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
 
         } else if (music.paused) {
-            // Resume music
+            // Play again
             music.play();
 
             musicBtn.classList.add("playing");
             musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
 
         } else {
-            // Pause music
+            // Pause
             music.pause();
 
             musicBtn.classList.remove("playing");
