@@ -391,21 +391,8 @@ const musicBtn = document.getElementById("musicBtn");
 
 if (music && musicBtn) {
 
-    // Restore music state
-    let isPlaying = localStorage.getItem("musicPlaying");
-    let musicTime = localStorage.getItem("musicTime");
+    music.load();
 
-    if (musicTime) {
-        music.currentTime = parseFloat(musicTime);
-    }
-
-    if (isPlaying === "true") {
-        music.play();
-        musicBtn.classList.add("playing");
-        musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
-    }
-
-    // Music button
     musicBtn.addEventListener("click", () => {
 
         if (music.paused) {
@@ -424,12 +411,6 @@ if (music && musicBtn) {
             musicBtn.classList.remove("playing");
             musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
         }
-
-    });
-
-    // Save current time before leaving page
-    window.addEventListener("beforeunload", () => {
-        localStorage.setItem("musicTime", music.currentTime);
     });
 
 }
