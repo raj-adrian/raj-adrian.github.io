@@ -2160,5 +2160,6 @@ button {
 }
 
 .music-btn.playing {
-    background: #10b981;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: var(--primary);
 }
