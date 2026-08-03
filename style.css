@@ -2139,8 +2139,8 @@ button {
 /* Floating Music Button */
 .music-btn {
     position: fixed;
-    bottom: 90px; /* Above the Back-to-Top button */
-    right: 20px;
+    bottom: 20px; /* Above the Back-to-Top button */
+    right: 85px;
     width: 55px;
     height: 55px;
     border: none;
